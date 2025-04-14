@@ -10,7 +10,7 @@
 
 // Include the dictionary ADT
 #include "dictionary.h"
-
+ 
 #pragma once
 
 using namespace std;
@@ -33,6 +33,8 @@ private:
   E* findhelp(BSTNode<Key, E>*, const Key&) const;
   void printhelp(BSTNode<Key, E>*, int) const;
   void visit(BSTNode<Key, E>*) const;
+  void printPreOrder(BSTNode<Key, E>*, int) const;
+
 
 public:
   BST() { root = NULL; nodecount = 0; }  // Constructor
@@ -196,4 +198,12 @@ printhelp(BSTNode<Key, E>* root, int level) const {
   printhelp(root->left(), level+1);   // Do left subtree
   visit(root);						  // Print node value
   printhelp(root->right(), level+1);  // Do right subtree
+}
+
+printPreOrder(BSTNode<Key, E>* root, int level) const {
+  if (root == NULL) return;           // Empty tree
+  cout << root.element();
+  printPreOrder(root->left(), level+1);   // Do left subtree
+  visit(root);						  // Print node value
+  printPreOrder(root->right(), level+1);  // Do right subtree
 }
